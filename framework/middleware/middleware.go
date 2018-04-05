@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 
 	framework "campfire-software.com/simplifi-framework/framework/models"
 	"github.com/gin-gonic/gin"
@@ -13,12 +12,10 @@ import (
 // LogProperties logs out all of the application properties
 func LogProperties(props *framework.Properties) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		value, exists := c.Get("Properties")
+		_, exists := c.Get("Properties")
 		if !exists {
 			c.Set("Properties", props)
-			value, _ = c.Get("Properties")
 		}
-		log.Printf("Properties: %+v", value)
 		c.Next()
 	}
 }
