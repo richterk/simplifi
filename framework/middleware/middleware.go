@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"time"
+
+	"github.com/gin-contrib/cors"
 
 	framework "campfire-software.com/simplifi-framework/framework/models"
 	"github.com/gin-gonic/gin"
@@ -11,7 +14,9 @@ import (
 
 // LogProperties logs out all of the application properties
 func LogProperties(props *framework.Properties) gin.HandlerFunc {
+	fmt.Println("Props...")
 	return func(c *gin.Context) {
+		fmt.Println("Props handler...")
 		_, exists := c.Get("Properties")
 		if !exists {
 			c.Set("Properties", props)
@@ -37,4 +42,17 @@ func LoadPropertiesByEnv(env string) *framework.Properties {
 
 	return &props
 
+}
+
+func CorsConfig() gin.HandlerFunc {
+
+	fmt.Println("Creating config...")
+	return cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Access-Control-Allow-Origin, Access-Control-Allow-Header, Content-Type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization", "Accept", "Origin", "Cache-Control", "X-Requested-With"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	})
 }
