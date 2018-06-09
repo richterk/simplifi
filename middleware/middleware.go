@@ -8,7 +8,6 @@ import (
 
 	"github.com/gin-contrib/cors"
 
-	framework "campfire-software.com/simplifi-framework/framework/models"
 	"github.com/gin-gonic/gin"
 )
 
