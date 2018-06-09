@@ -9,8 +9,9 @@ type DatabaseProperties struct {
 
 // Properties for the API
 type Properties struct {
-	Environment string             `json:"environment"`
-	DB          DatabaseProperties `json:"db"`
-	Port        int                `json:"port"`
-	JwtSecret   string             `json:"jwtSecret"`
+	Environment    string             `json:"environment"`
+	DB             DatabaseProperties `json:"db"`
+	Port           int                `json:"port"`
+	JwtSecret      string             `json:"jwtSecret"`
+	GithubAPIToken string             `json:"githubAPIToken"`
 }
