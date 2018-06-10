@@ -1,4 +1,4 @@
-package constants
+package simplifiFramework
 
 const (
 	CONTROLLER_COLLECTION_HYDRATE_COIN string = "coin"

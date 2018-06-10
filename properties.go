@@ -1,4 +1,4 @@
-package framework
+package simplifiFramework
 
 type DatabaseProperties struct {
 	Host     string `json:"host"`
