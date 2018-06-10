@@ -11,7 +11,7 @@ import (
 )
 
 // LogProperties logs out all of the application properties
-func LogProperties(props *framework.Properties) gin.HandlerFunc {
+func LogProperties(props *simplifiFramework.Properties) gin.HandlerFunc {
 	fmt.Println("Props...")
 	return func(c *gin.Context) {
 		fmt.Println("Props handler...")
@@ -24,14 +24,14 @@ func LogProperties(props *framework.Properties) gin.HandlerFunc {
 }
 
 // LoadPropertiesByEnv loads the properties file based on the environment
-func LoadPropertiesByEnv(env string) *framework.Properties {
+func LoadPropertiesByEnv(env string) *simplifiFramework.Properties {
 	propertiesReader := fmt.Sprintf("./config/config.%s.json", env)
 	bytes, err := ioutil.ReadFile(propertiesReader)
 
 	if err != nil {
 		panic(err)
 	}
-	var props framework.Properties
+	var props simplifiFramework.Properties
 
 	err = json.Unmarshal(bytes, &props)
 	if err != nil {
