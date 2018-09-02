@@ -17,10 +17,10 @@ type Properties struct {
 }
 
 // IgnitionEngineProperties are the properties that exist in an IgnitionEngine Application
- type IgnitionEngineProperties struct {
-	 Environment string `json:"environment"`
-	 DB DatabaseProperties `json:"db"`
-	 ClientInstanceKey `json:"client_key"`,
-	 TargetChannel `json:"target_channel"`
-	 ApplicationName `json:"app_name"`
- }
+type IgnitionEngineProperties struct {
+	Environment       string             `json:"environment"`
+	DB                DatabaseProperties `json:"db"`
+	ClientInstanceKey `json:"client_key"`
+	TargetChannel     `json:"target_channel"`
+	ApplicationName   `json:"app_name"`
+}
