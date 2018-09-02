@@ -20,7 +20,7 @@ type Properties struct {
 type IgnitionEngineProperties struct {
 	Environment       string             `json:"environment"`
 	DB                DatabaseProperties `json:"db"`
-	ClientInstanceKey `json:"client_key"`
-	TargetChannel     `json:"target_channel"`
-	ApplicationName   `json:"app_name"`
+	ClientInstanceKey string             `json:"client_key"`
+	TargetChannel     string             `json:"target_channel"`
+	ApplicationName   string             `json:"app_name"`
 }
