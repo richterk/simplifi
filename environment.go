@@ -20,7 +20,7 @@ type IgnitionEngineEnvironment struct {
 }
 
 // InitDB - DB Stuff
-func (env *IgnitionEngineEnvironment) InitDB(props *Properties) {
+func (env *IgnitionEngineEnvironment) InitDB(props *IgnitionEngineProperties) {
 	appProperties := props
 	//		session, err := mgo.Dial(appProperties.DB.Host)
 	// NEW DB LOGIC
