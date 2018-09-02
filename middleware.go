@@ -42,6 +42,24 @@ func LoadPropertiesByEnv(env string) *Properties {
 
 }
 
+func LoadIgnitionEnginePropertiesByEnv(env string) *IgnitionEngineProperties {
+	propertiesReader := fmt.Sprintf("./config/config.%s.json", env)
+	bytes, err := ioutil.ReadFile(propertiesReader)
+
+	if err != nil {
+		panic(err)
+	}
+	var props IgnitionEngineProperties
+
+	err = json.Unmarshal(bytes, &props)
+	if err != nil {
+		panic(err)
+	}
+
+	return &props
+
+}
+
 func CorsConfig() gin.HandlerFunc {
 
 	fmt.Println("Creating config...")
