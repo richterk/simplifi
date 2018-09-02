@@ -14,6 +14,11 @@ type Environment struct {
 	Properties *Properties
 }
 
+type IgnitionEngineEnvironment struct {
+	DB         *mgo.Session
+	Properties *IgnitionEngineProperties
+}
+
 // InitDB - DB Stuff
 func (env *Environment) InitDB(props *Properties) {
 	appProperties := props
