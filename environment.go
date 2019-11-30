@@ -1,4 +1,4 @@
-package simplifiFramework
+package simplifi
 
 import (
 	"crypto/tls"

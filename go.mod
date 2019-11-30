@@ -1,4 +1,4 @@
-module github.com/richterk/simplifi-framework
+module github.com/richterk/simplifi
 
 go 1.13
 

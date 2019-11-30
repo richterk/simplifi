@@ -1,4 +1,4 @@
-package simplifiFramework
+package simplifi
 
 const (
 	FAILED_TO_CONNECT_TO_DATABASE string = "Failed to connect to the user database"

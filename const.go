@@ -1,4 +1,4 @@
-package simplifiFramework
+package simplifi
 
 const (
 	CONTROLLER_COLLECTION_USER        string = "user"

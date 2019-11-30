@@ -1,3 +1,3 @@
-package simplifiFramework
+package simplifi
 
 func Something() {}
