@@ -1,0 +1,3 @@
+package simplifiFramework
+
+func Something() {}
