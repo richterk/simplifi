@@ -16,10 +16,18 @@ type CmlClaims struct {
 
 // Valid checks whether the claims the user has are valid.  Both ROLE_ADMIN and ROLE_USER are valid.
 func (claims CmlClaims) Valid() error {
-	if !(time.Now().Unix() <= int64(claims.ExpiresAt)) {
-		return AuthError{When: time.Now(), What: "token has expired"}
+	expireTime, err := time.Parse(AuthDateFormat, claims.ExpiresAt)
+
+	if err != nil {
+		return AuthError{When: time.Now(), What: "Failed to parse the expirationDate"}
 	}
+
+	if !(time.Now().Unix() <= expireTime.Unix()) {
+		return AuthError{When: time.Now(), What: "Token has expired"}
+	}
+
 	fmt.Printf("Claims: %+v \n\n", claims)
+
 	for i := 0; i < len(claims.Roles); i++ {
 		realRole := strings.Replace(claims.Roles[i], "\"", "", 2) // So stupid that this has to be done.
 		fmt.Printf("Role: %+v, %v - Username: %s \n\n", claims.Roles[i], realRole == "ROLE_ADMIN", claims.Username)
