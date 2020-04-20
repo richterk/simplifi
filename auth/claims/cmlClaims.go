@@ -11,7 +11,7 @@ type CmlClaims struct {
 	ID        string
 	Username  string
 	Roles     []string
-	ExpiresAt int64
+	ExpiresAt string
 }
 
 // Valid checks whether the claims the user has are valid.  Both ROLE_ADMIN and ROLE_USER are valid.
