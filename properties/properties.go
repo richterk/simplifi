@@ -1,5 +1,6 @@
-package simplifi
+package properties
 
+//DatabaseProperties - This is the object representing the database connection
 type DatabaseProperties struct {
 	Host     string `json:"host"`
 	Database string `json:"database"`
@@ -7,6 +8,7 @@ type DatabaseProperties struct {
 	Password string `json:"password"`
 }
 
+//Amqp - This is the object representing an Amqp connection
 type Amqp struct {
 	Username string `json:"username"`
 	Password string `json:"password"`

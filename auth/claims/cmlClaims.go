@@ -1,4 +1,4 @@
-package simplifi
+package claims
 
 import (
 	"fmt"
@@ -38,6 +38,7 @@ func (claims CmlClaims) Valid() error {
 	return AuthError{When: time.Now(), What: "You don't have the required role"}
 }
 
+//AuthError - Error type for Auth
 type AuthError struct {
 	When time.Time
 	What string

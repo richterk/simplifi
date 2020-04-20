@@ -1,4 +1,4 @@
-package simplifi
+package middleware
 
 import (
 	"encoding/json"
@@ -8,10 +8,11 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/richterk/simplifi/properties"
 )
 
 // LogProperties logs out all of the application properties
-func LogProperties(props *Properties) gin.HandlerFunc {
+func LogProperties(props *properties.Properties) gin.HandlerFunc {
 	fmt.Println("Props...")
 	return func(c *gin.Context) {
 		fmt.Println("Props handler...")
@@ -24,14 +25,14 @@ func LogProperties(props *Properties) gin.HandlerFunc {
 }
 
 // LoadPropertiesByEnv loads the properties file based on the environment
-func LoadPropertiesByEnv(env string) *Properties {
+func LoadPropertiesByEnv(env string) *properties.Properties {
 	propertiesReader := fmt.Sprintf("./config/config.%s.json", env)
 	bytes, err := ioutil.ReadFile(propertiesReader)
 
 	if err != nil {
 		panic(err)
 	}
-	var props Properties
+	var props properties.Properties
 
 	err = json.Unmarshal(bytes, &props)
 	if err != nil {
@@ -42,14 +43,15 @@ func LoadPropertiesByEnv(env string) *Properties {
 
 }
 
-func LoadIgnitionEnginePropertiesByEnv(env string) *IgnitionEngineProperties {
+//LoadIgnitionEnginePropertiesByEnv - Loads all of the properties for the given environment
+func LoadIgnitionEnginePropertiesByEnv(env string) *properties.IgnitionEngineProperties {
 	propertiesReader := fmt.Sprintf("./config/config.%s.json", env)
 	bytes, err := ioutil.ReadFile(propertiesReader)
 
 	if err != nil {
 		panic(err)
 	}
-	var props IgnitionEngineProperties
+	var props properties.IgnitionEngineProperties
 
 	err = json.Unmarshal(bytes, &props)
 	if err != nil {
@@ -60,6 +62,7 @@ func LoadIgnitionEnginePropertiesByEnv(env string) *IgnitionEngineProperties {
 
 }
 
+//CorsConfig - Default Cors config
 func CorsConfig() gin.HandlerFunc {
 
 	fmt.Println("Creating config...")

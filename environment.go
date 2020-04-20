@@ -7,20 +7,24 @@ import (
 	"strings"
 
 	mgo "gopkg.in/mgo.v2"
+
+	"github.com/richterk/simplifi/properties"
 )
 
+//Environment - Type representing the Simplifi environment
 type Environment struct {
 	DB         *mgo.Session
-	Properties *Properties
+	Properties *properties.Properties
 }
 
+//IgnitionEngineEnvironment - Type representing a specific Simplifi environment implementation
 type IgnitionEngineEnvironment struct {
 	DB         *mgo.Session
-	Properties *IgnitionEngineProperties
+	Properties *properties.IgnitionEngineProperties
 }
 
 // InitDB - DB Stuff
-func (env *IgnitionEngineEnvironment) InitDB(props *IgnitionEngineProperties) {
+func (env *IgnitionEngineEnvironment) InitDB(props *properties.IgnitionEngineProperties) {
 	appProperties := props
 	//		session, err := mgo.Dial(appProperties.DB.Host)
 	// NEW DB LOGIC
@@ -55,7 +59,7 @@ func (env *IgnitionEngineEnvironment) InitDB(props *IgnitionEngineProperties) {
 }
 
 // InitDB - DB Stuff
-func (env *Environment) InitDB(props *Properties) {
+func (env *Environment) InitDB(props *properties.Properties) {
 	appProperties := props
 	//		session, err := mgo.Dial(appProperties.DB.Host)
 	// NEW DB LOGIC

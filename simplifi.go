@@ -1,3 +1,1 @@
 package simplifi
-
-func Something() {}
