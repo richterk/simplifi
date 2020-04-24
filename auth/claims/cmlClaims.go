@@ -2,7 +2,6 @@ package claims
 
 import (
 	"fmt"
-	"strings"
 	"time"
 )
 
@@ -28,22 +27,7 @@ func (claims CmlClaims) Valid() error {
 
 	fmt.Printf("Claims: %+v \n\n", claims)
 
-	for i := 0; i < len(claims.Roles); i++ {
-		realRole := strings.Replace(claims.Roles[i], "\"", "", 2) // So stupid that this has to be done.
-		fmt.Printf("Role: %+v, %v - Username: %s \n\n", claims.Roles[i], realRole == "ROLE_ADMIN", claims.Username)
-		if realRole == "ROLE_ADMIN" {
-			fmt.Printf("Admin...\n")
-			return nil
-		}
-
-		if realRole == "ROLE_USER" {
-			fmt.Printf("User...\n")
-			return nil
-		}
-	}
-
-	fmt.Printf("Error...\n")
-	return AuthError{When: time.Now(), What: "You don't have the required role"}
+	return nil
 }
 
 //AuthError - Error type for Auth
