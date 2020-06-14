@@ -6,7 +6,7 @@ import (
 	"net"
 	"strings"
 
-	mgo "gopkg.in/mgo.v2"
+	mgo "github.com/globalsign/mgo"
 
 	"github.com/richterk/simplifi/properties"
 )
