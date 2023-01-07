@@ -13,13 +13,13 @@ import (
 
 // Environment - Type representing the Simplifi environment
 type Environment struct {
-	DB         *mongo.Client
+	DB         *mongo.Session
 	Properties *properties.Properties
 }
 
 // IgnitionEngineEnvironment - Type representing a specific Simplifi environment implementation
 type IgnitionEngineEnvironment struct {
-	DB         *mongo.Client
+	DB         *mongo.Session
 	Properties *properties.IgnitionEngineProperties
 }
 
