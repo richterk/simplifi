@@ -1,25 +1,25 @@
 package simplifi
 
 import (
+	"context"
 	"crypto/tls"
-	"fmt"
-	"net"
 	"strings"
 
-	mgo "github.com/globalsign/mgo"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/richterk/simplifi/properties"
 )
 
-//Environment - Type representing the Simplifi environment
+// Environment - Type representing the Simplifi environment
 type Environment struct {
-	DB         *mgo.Session
+	DB         *mongo.Client
 	Properties *properties.Properties
 }
 
-//IgnitionEngineEnvironment - Type representing a specific Simplifi environment implementation
+// IgnitionEngineEnvironment - Type representing a specific Simplifi environment implementation
 type IgnitionEngineEnvironment struct {
-	DB         *mgo.Session
+	DB         *mongo.Client
 	Properties *properties.IgnitionEngineProperties
 }
 
@@ -32,30 +32,14 @@ func (env *IgnitionEngineEnvironment) InitDB(props *properties.IgnitionEnginePro
 	tlsConfig := &tls.Config{}
 	tlsConfig.InsecureSkipVerify = true
 
-	dialInfo, err := mgo.ParseURL(uri)
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 
 	if err != nil {
 		panic(err)
 	}
-
-	dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {
-		conn, err := tls.Dial("tcp", addr.String(), tlsConfig)
-		return conn, err
-	}
-
-	session, err := mgo.DialWithInfo(dialInfo)
-	if err != nil {
-		fmt.Println("Failed to connect: ", err)
-		panic(err)
-	}
-
-	if err != nil {
-		panic(err)
-	}
-
 	// END NEW DB LOGIC
 
-	env.DB = session
+	env.DB = client
 }
 
 // InitDB - DB Stuff
@@ -67,28 +51,12 @@ func (env *Environment) InitDB(props *properties.Properties) {
 	tlsConfig := &tls.Config{}
 	tlsConfig.InsecureSkipVerify = true
 
-	dialInfo, err := mgo.ParseURL(uri)
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
 
 	if err != nil {
 		panic(err)
 	}
-
-	dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {
-		conn, err := tls.Dial("tcp", addr.String(), tlsConfig)
-		return conn, err
-	}
-
-	session, err := mgo.DialWithInfo(dialInfo)
-	if err != nil {
-		fmt.Println("Failed to connect: ", err)
-		panic(err)
-	}
-
-	if err != nil {
-		panic(err)
-	}
-
 	// END NEW DB LOGIC
 
-	env.DB = session
+	env.DB = client
 }
