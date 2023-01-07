@@ -38,8 +38,12 @@ func (env *IgnitionEngineEnvironment) InitDB(props *properties.IgnitionEnginePro
 		panic(err)
 	}
 	// END NEW DB LOGIC
+	session, err := client.StartSession()
 
-	env.DB = client
+	if err != nil {
+		panic(err)
+	}
+	env.DB = &session
 }
 
 // InitDB - DB Stuff
@@ -57,6 +61,10 @@ func (env *Environment) InitDB(props *properties.Properties) {
 		panic(err)
 	}
 	// END NEW DB LOGIC
+	session, err := client.StartSession()
 
-	env.DB = client
+	if err != nil {
+		panic(err)
+	}
+	env.DB = &session
 }
